@@ -1,6 +1,0 @@
-CREATE DATABASE todo;
-
-CREATE TABLE todoTable(
-    todo_id SERIAL PRIMARY KEY, --serial increments the id to keep unique
-    description VARCHAR(255)
-);
