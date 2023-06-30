@@ -30,11 +30,13 @@ const ListTodo = () => {
             console.error(error);
         }
     }
+    
     useEffect(() => {
         getTodos();
     }, []);
 
-    return <Fragment><table class="table mt-5 text-center">
+    return <Fragment>
+    <table class="table mt-5 text-center">
     <thead>
       <tr>
         <th>Description</th>
@@ -43,19 +45,13 @@ const ListTodo = () => {
       </tr>
     </thead>
     <tbody>
-        {/*      
-        <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr> */}
       {todos.map(todo => (
         <tr key = {todo.todo_id}>
             <td>{todo.description}</td>
             <td>
                 <EditTodo todo = {todo}/>
             </td>
-            <td><button className = "btn btn-danger" onClick={()=> deleteTodo(todo.todo_id)}>Delete</button></td>
+            <td><button className = "btn" onClick={()=> deleteTodo(todo.todo_id)}>❌</button></td>
         </tr>
         ))}
     </tbody>

@@ -10,8 +10,20 @@ function App() {
   return <Fragment>
       <div className = "container">
         <InputTodo/>
-        <ListTodo/>
       </div>
+      <div class="container">
+        <div class="row">
+    <div class="col-sm">
+      <ListTodo/>
+    </div>
+    <div class="col-sm">
+    <ListTodo/>
+    </div>
+    <div class="col-sm">
+    <ListTodo/>
+    </div>
+  </div>
+</div>
   </Fragment>;
 }
 

@@ -21,11 +21,10 @@ const EditTodo = ({todo}) =>{ //prop
     };
 
     return ( <Fragment>
-    <button type="button" class="btn btn-warning" 
+    <button type="button" class="btn" 
         data-bs-toggle="modal"
         data-bs-target={`#id${todo.todo_id}`}>
-        Edit
-
+        🖊️
     </button>
         <div class="modal" id={`id${todo.todo_id}`}
         onClick={()=>setDescription(todo.description)}>
