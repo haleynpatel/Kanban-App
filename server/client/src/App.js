@@ -4,6 +4,8 @@ import './App.css';
 //Components
 import InputTodo from './components/InputTodo';
 import ListTodo from './components/ListTodo';
+import ListProgress from './components/ListProgress';
+import ListDone from './components/ListDone';
 
 function App() {
 
@@ -17,10 +19,10 @@ function App() {
       <ListTodo/>
     </div>
     <div class="col-sm">
-    <ListTodo/>
+    <ListProgress/>
     </div>
     <div class="col-sm">
-    <ListTodo/>
+    <ListDone/>
     </div>
   </div>
 </div>

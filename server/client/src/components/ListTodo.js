@@ -36,12 +36,10 @@ const ListTodo = () => {
     }, []);
 
     return <Fragment>
-    <table class="table mt-5 text-center">
+    <table class="table-sm mt-5 text-center">
     <thead>
       <tr>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th scope = "col">Backlog</th>
       </tr>
     </thead>
     <tbody>
