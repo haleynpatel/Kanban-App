@@ -1,7 +1,9 @@
 import React, { Fragment , useEffect, useState} from 'react';
 import EditTodo from './EditTodo';
+import InputTodo from './InputTodo';
 //useEffect makes request to RESTful API
 
+// Done Items List
 const ListDone = () => {
     const[todos, setTodos] = useState([]);
 
@@ -21,7 +23,7 @@ const ListDone = () => {
 
     const getTodos = async () => {
         try{
-            const response = await fetch('http://localhost:5000/todos');
+            const response = await fetch('http://localhost:5000/done');
             const jsonData = await response.json();
             
             setTodos(jsonData);
@@ -40,6 +42,9 @@ const ListDone = () => {
     <thead>
       <tr>
         <th scope = "col">Done</th>
+      </tr>
+      <tr>
+        <th scope = "col"> <InputTodo done/></th>
       </tr>
     </thead>
     <tbody>
