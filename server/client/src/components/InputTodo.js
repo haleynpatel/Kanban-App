@@ -1,20 +1,31 @@
 import React, {Fragment, useState} from 'react';
 
-const InputTodo = () => {
+const InputTodo = ({progress}) => {
 
     const[description, setDescription] = useState(''); //description is the state, setDescription sets the state and useState is a default value
 
     const onSubmitForm = async e => {
         e.preventDefault();
         try{
-            const body = {description};
-            const response = await fetch("http://localhost:5000/todos", {
-                method: "POST",
-                headers: {"Content-type": "application/json"},
-                body: JSON.stringify(body)
-            });
-            //console.log(response);
-            window.location = "/";
+            if(progress){
+                const body = {description};
+                const response = await fetch("http://localhost:5000/progress", {
+                    method: "POST",
+                    headers: {"Content-type": "application/json"},
+                    body: JSON.stringify(body)
+                });
+                window.location = "/";
+            }
+            else{
+                const body = {description};
+                const response = await fetch("http://localhost:5000/todos", {
+                    method: "POST",
+                    headers: {"Content-type": "application/json"},
+                    body: JSON.stringify(body)
+                });
+                //console.log(response);
+                window.location = "/";
+            }
         }
         catch(error){
             console.log(error.message);

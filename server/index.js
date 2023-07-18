@@ -26,6 +26,19 @@ app.post("/todos", async (req, res) => {
     }
 });
 
+app.post("/progress", async (req, res) => {
+    try{
+        const { description }  = req.body;
+        const newTodo = await pool.query(
+            //1 represents in progress
+            "INSERT INTO todotable(description, status) VALUES($1, 1) RETURNING *",
+            [description]
+        );
+        res.json(newTodo.rows[0]);
+    } catch(err) {
+        console.error(err.message);
+    }
+});
 
 //get all todos
 
@@ -38,6 +51,17 @@ app.get("/todos", async (req, res) => {
             console.error(err.message);
     }
 });
+
+app.get("/progress", async (req, res) => {
+    try{
+        const allTodos = await pool.query("SELECT * FROM todotable WHERE STATUS = 1");
+        res.json(allTodos.rows);
+    }
+    catch(err) {
+            console.error(err.message);
+    }
+});
+
 
 //get a specific todo
 

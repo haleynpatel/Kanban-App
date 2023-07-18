@@ -42,7 +42,7 @@ const ListTodo = () => {
         <th scope = "col">Backlog</th>
       </tr>
       <tr>
-
+      <th scope = "col"> <InputTodo></InputTodo></th>
       </tr>
     </thead>
     <tbody>

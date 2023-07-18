@@ -1,5 +1,6 @@
 import React, { Fragment , useEffect, useState} from 'react';
 import EditTodo from './EditTodo';
+import InputTodo from './InputTodo';
 //useEffect makes request to RESTful API
 
 const ListProgress = () => {
@@ -21,7 +22,7 @@ const ListProgress = () => {
 
     const getTodos = async () => {
         try{
-            const response = await fetch('http://localhost:5000/todos');
+            const response = await fetch('http://localhost:5000/progress');
             const jsonData = await response.json();
             
             setTodos(jsonData);
@@ -40,6 +41,9 @@ const ListProgress = () => {
     <thead>
       <tr>
         <th scope = "col">In Progress</th>
+      </tr>
+      <tr>
+        <th scope = "col"> <InputTodo progress/></th>
       </tr>
     </thead>
     <tbody>
