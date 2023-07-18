@@ -17,7 +17,7 @@ app.post("/todos", async (req, res) => {
     try{
         const { description }  = req.body;
         const newTodo = await pool.query(
-            "INSERT INTO todotable(description) VALUES($1) RETURNING *",
+            "INSERT INTO todotable(description, status) VALUES($1, 0) RETURNING *",
             [description]
         );
         res.json(newTodo.rows[0]);
@@ -26,12 +26,60 @@ app.post("/todos", async (req, res) => {
     }
 });
 
+app.post("/progress", async (req, res) => {
+    try{
+        const { description }  = req.body;
+        const newTodo = await pool.query(
+            //1 represents in progress
+            "INSERT INTO todotable(description, status) VALUES($1, 1) RETURNING *",
+            [description]
+        );
+        res.json(newTodo.rows[0]);
+    } catch(err) {
+        console.error(err.message);
+    }
+});
+
+app.post("/done", async (req, res) => {
+    try{
+        const { description }  = req.body;
+        const newTodo = await pool.query(
+            //2 represents done
+            "INSERT INTO todotable(description, status) VALUES($1, 2) RETURNING *",
+            [description]
+        );
+        res.json(newTodo.rows[0]);
+    } catch(err) {
+        console.error(err.message);
+    }
+});
 
 //get all todos
-
 app.get("/todos", async (req, res) => {
     try{
-        const allTodos = await pool.query("SELECT * FROM todotable");
+        const allTodos = await pool.query("SELECT * FROM todotable WHERE STATUS = 0");
+        res.json(allTodos.rows);
+    }
+    catch(err) {
+            console.error(err.message);
+    }
+});
+
+app.get("/progress", async (req, res) => {
+    try{
+        // retrieve all todo items that are in progress
+        const allTodos = await pool.query("SELECT * FROM todotable WHERE STATUS = 1");
+        res.json(allTodos.rows);
+    }
+    catch(err) {
+            console.error(err.message);
+    }
+});
+
+app.get("/done", async (req, res) => {
+    try{
+        //retrieve all todo items that are done
+        const allTodos = await pool.query("SELECT * FROM todotable WHERE STATUS = 2");
         res.json(allTodos.rows);
     }
     catch(err) {
@@ -40,7 +88,6 @@ app.get("/todos", async (req, res) => {
 });
 
 //get a specific todo
-
 app.get("/todos/:id", async (req, res) => {
     try{
         //console.log(req.params) debug
@@ -53,7 +100,6 @@ app.get("/todos/:id", async (req, res) => {
 });
 
 //update a todo
-
 app.put("/todos/:id", async (req, res) => {
     try{
         const {id} = req.params;
@@ -69,7 +115,20 @@ app.put("/todos/:id", async (req, res) => {
     }
 });
 
+app.put("/todos/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const{description} = req.body;
+        const progress = await pool.query(
+                "UPDATE todotable SET status = $1 WHERE todo_id = $2", [1, id]
+        );
 
+        res.json("Todo was updated successfully");
+    }
+    catch(err) {
+            console.error(err.message);
+    }
+});
 //delete a todo
 
 app.delete("/todos/:id", async (req, res) => {
@@ -82,7 +141,6 @@ app.delete("/todos/:id", async (req, res) => {
         console.error(err.message);
     }
 });
-
 
 app.listen(5000, () => {
     console.log("Server running on port 5000");
