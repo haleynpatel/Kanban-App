@@ -15,7 +15,7 @@ const InputTodo = ({progress, done}) => {
                 });
                 window.location = "/";
             }
-            if(done){
+            else if(done){
                 const body = {description};
                 const response = await fetch("http://localhost:5000/done", {
                     method: "POST",
