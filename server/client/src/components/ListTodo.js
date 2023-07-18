@@ -1,5 +1,6 @@
 import React, { Fragment , useEffect, useState} from 'react';
 import EditTodo from './EditTodo';
+import InputTodo from './InputTodo';
 //useEffect makes request to RESTful API
 
 const ListTodo = () => {
@@ -17,7 +18,6 @@ const ListTodo = () => {
             console.error(error.message);
         }
     }
-
 
     const getTodos = async () => {
         try{
@@ -40,6 +40,9 @@ const ListTodo = () => {
     <thead>
       <tr>
         <th scope = "col">Backlog</th>
+      </tr>
+      <tr>
+
       </tr>
     </thead>
     <tbody>

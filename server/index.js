@@ -69,8 +69,22 @@ app.put("/todos/:id", async (req, res) => {
     }
 });
 
+app.put("/todos/:id", async (req, res) => {
+    try{
+        const {id} = req.params;
+        const{description} = req.body;
+        const progress = await pool.query(
+                "UPDATE todotable SET status = $1 WHERE todo_id = $2", [1, id]
+        );
 
+        res.json("Todo was updated successfully");
+    }
+    catch(err) {
+            console.error(err.message);
+    }
+});
 //delete a todo
+
 
 app.delete("/todos/:id", async (req, res) => {
     try{
@@ -82,7 +96,6 @@ app.delete("/todos/:id", async (req, res) => {
         console.error(err.message);
     }
 });
-
 
 app.listen(5000, () => {
     console.log("Server running on port 5000");
