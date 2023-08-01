@@ -1,6 +1,7 @@
 import React, { Fragment , useEffect, useState} from 'react';
 import EditTodo from './EditTodo';
 import InputTodo from './InputTodo';
+import './styles.css';
 //useEffect makes request to RESTful API
 
 // Done Items List
@@ -41,7 +42,7 @@ const ListDone = () => {
     <table class="table-sm mt-5 text-center">
     <thead>
       <tr>
-        <th scope = "col">Done</th>
+        <th scope = "col" class = "th-done">Done 🌴</th>
       </tr>
       <tr>
         <th scope = "col"> <InputTodo done/></th>

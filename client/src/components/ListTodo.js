@@ -39,7 +39,7 @@ const ListTodo = () => {
     <table class="table-sm mt-5 text-center">
     <thead>
       <tr>
-        <th scope = "col">Backlog</th>
+        <th scope = "col" class = 'th-backlog'>Backlog 🌱</th>
       </tr>
       <tr>
       <th scope = "col"> <InputTodo></InputTodo></th>
