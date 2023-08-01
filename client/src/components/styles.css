@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+.th-done{
+    font-family: 'Kalam';
+    font-size: 1.5rem;
+    color:#06d6a0;
+}
+
+.th-progress{
+    font-family: 'Kalam';
+    font-size: 1.5rem;
+    color:#f9c74f;
+}
+
+.th-backlog{
+    font-family: 'Kalam';
+    font-size: 1.5rem;
+    color:#ef476f;
+}

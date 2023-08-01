@@ -40,7 +40,7 @@ const ListProgress = () => {
     <table class="table-sm mt-5 text-center">
     <thead>
       <tr>
-        <th scope = "col">In Progress</th>
+        <th scope = "col" class = "th-progress">In Progress 🌿 </th>
       </tr>
       <tr>
         <th scope = "col"> <InputTodo progress/></th>
