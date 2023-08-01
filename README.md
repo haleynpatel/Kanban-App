@@ -21,5 +21,5 @@
 *Current User Interface*
 ![screenshot](Kanban.JPG)
 
-*Newly designed UI made through Figma.*
+*Newly designed UI prototype made through Figma.*
 ![UI 2](KanBanUI2.JPG)
