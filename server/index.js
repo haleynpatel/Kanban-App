@@ -3,16 +3,12 @@ const app = express();
 const cors = require('cors');
 const pool = require("./db");
 
-//middleware
 app.use(cors());
-app.use(express.json()); //get json data
+app.use(express.json());
 
-//ROUTES//
+//ROUTES //
 
-
-//create a todo
-
-//Creating so use POST method
+//create a backlog item
 app.post("/todos", async (req, res) => {
     try{
         const { description }  = req.body;
@@ -26,6 +22,7 @@ app.post("/todos", async (req, res) => {
     }
 });
 
+//create progress item
 app.post("/progress", async (req, res) => {
     try{
         const { description }  = req.body;
@@ -40,6 +37,7 @@ app.post("/progress", async (req, res) => {
     }
 });
 
+//create done item
 app.post("/done", async (req, res) => {
     try{
         const { description }  = req.body;
@@ -54,7 +52,7 @@ app.post("/done", async (req, res) => {
     }
 });
 
-//get all todos
+//get backlog items
 app.get("/todos", async (req, res) => {
     try{
         const allTodos = await pool.query("SELECT * FROM todotable WHERE STATUS = 0");
@@ -65,6 +63,7 @@ app.get("/todos", async (req, res) => {
     }
 });
 
+//get progress items
 app.get("/progress", async (req, res) => {
     try{
         // retrieve all todo items that are in progress
@@ -76,6 +75,7 @@ app.get("/progress", async (req, res) => {
     }
 });
 
+//get done items
 app.get("/done", async (req, res) => {
     try{
         //retrieve all todo items that are done
@@ -87,7 +87,7 @@ app.get("/done", async (req, res) => {
     }
 });
 
-//get a specific todo
+//get a specific todo item
 app.get("/todos/:id", async (req, res) => {
     try{
         //console.log(req.params) debug
@@ -99,7 +99,7 @@ app.get("/todos/:id", async (req, res) => {
     }
 });
 
-//update a todo
+//update a todo item
 app.put("/todos/:id", async (req, res) => {
     try{
         const {id} = req.params;
@@ -108,13 +108,14 @@ app.put("/todos/:id", async (req, res) => {
                 "UPDATE todotable SET description = $1 WHERE todo_id = $2", [description, id]
         );
 
-        res.json("Todo was updated successfully");
+        res.json("Item was updated successfully");
     }
     catch(err) {
             console.error(err.message);
     }
 });
 
+//update a backlog item to progress
 app.put("/todos/:id", async (req, res) => {
     try{
         const {id} = req.params;
@@ -123,19 +124,19 @@ app.put("/todos/:id", async (req, res) => {
                 "UPDATE todotable SET status = $1 WHERE todo_id = $2", [1, id]
         );
 
-        res.json("Todo was updated successfully");
+        res.json("Item was updated successfully");
     }
     catch(err) {
             console.error(err.message);
     }
 });
-//delete a todo
 
+//delete a todo item
 app.delete("/todos/:id", async (req, res) => {
     try{
         const {id} = req.params;
         const deleteTodo = await pool.query("DELETE FROM todotable WHERE todo_id = $1", [id]);
-        res.json("Todo was deleted successfully");
+        res.json("Item was deleted successfully");
     }
     catch(err){
         console.error(err.message);
