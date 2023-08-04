@@ -18,4 +18,8 @@
 * User can edit and delete tasks in the respective columns and move them through each workflow step. 
 
 ## :camera: Screenshots
+*Current User Interface*
 ![screenshot](Kanban.JPG)
+
+*Newly designed UI prototype made through Figma.*
+![UI 2](KanBanUI2.JPG)
